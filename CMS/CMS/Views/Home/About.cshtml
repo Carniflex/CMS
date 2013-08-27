@@ -1,0 +1,49 @@
+﻿ @if(User.Identity.IsAuthenticated) {
+
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<article>
+    <p>
+        Use this area to provide additional information.
+    </p>
+
+    <p>
+        Use this area to provide additional information.
+    </p>
+
+    <p>
+        Use this area to provide additional information.
+    </p>
+</article>
+
+<aside>
+    <h3>Aside Title</h3>
+    <p>
+        Use this area to provide additional information.
+    </p>
+    <ul>
+        
+    </ul>
+</aside>
+ }
+else
+{
+    <div class="todoList" id="loginPanel">
+        <section id="localLoginPanel">
+            <h2>Log in</h2>
+            @Html.Partial("_Login")
+        </section>
+        <p>First time here? <a id="showRegister">Sign up</a></p>
+    </div>
+    <div class="todoList" id="registerPanel">
+        <h2>Sign up</h2>
+        @Html.Partial("_Register")
+        <p>Already signed up? <a id="showLogin">Log in</a></p>
+    </div>
+   
+   
+   }

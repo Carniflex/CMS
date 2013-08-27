@@ -1,0 +1,65 @@
+﻿@if (User.Identity.IsAuthenticated||User.IsInRole("admin"))
+{
+<form>
+    <table>
+        <tr>
+            <td>
+                <!--Bind the TextBoxes in the Table to the observable properties defined into the ViewModel -->
+                <table id="tbldml">
+                    <tr>
+                        <td>User Name</td>
+                        <td>
+                            <input type="text" id="txtename" data-bind="value: $root.UserName"  disabled="disabled"/></td>
+                    </tr>
+                    <tr>
+                        <td>Change Role</td>
+                        <td>
+                            <select data-bind="options: rolels, optionsText: 'Roleq',optionsValue: 'id', value: selectedChoice, optionsCaption: 'Choose..'"></select>
+                    </tr>
+
+                    <tr>
+                        <!--The click binding has the JavaScirpt methods passed to it-->
+                        <td>
+                            <input type="button" data-bind="click: $root.Update" Value="Update" class="button"/>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <div class="FixedContainer">
+
+                    <table data-bind="visible: UsersData().length > 0">
+                        <tbody data-bind="foreach: UsersData">
+                            <tr style="border: solid" data-bind="click: $root.getselecteduser" id="updtr">
+                                <td><span data-bind="text: UserId"></span></td>
+                                <td><span data-bind="text: UserName"></span></td>
+                                <td><span data-bind="text: Roles"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/MyScipts/AdminScript.js"></script>
+</form>
+}
+else
+{
+     <div class="todoList" id="loginPanel">
+        <section id="localLoginPanel">
+            <h2>Log in</h2>
+            @Html.Partial("_Login")
+        </section>
+        <p>First time here? <a id="showRegister">Sign up</a></p>
+    </div>
+    <div class="todoList" id="registerPanel">
+        <h2>Sign up</h2>
+        @Html.Partial("_Register")
+        <p>Already signed up? <a id="showLogin">Log in</a></p>
+    </div>
+   
+
+}

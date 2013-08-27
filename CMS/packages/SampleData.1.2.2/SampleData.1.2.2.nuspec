@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SampleData</id>
+    <version>1.2.2</version>
+    <title>Sample classes and data</title>
+    <authors>Calabonga</authors>
+    <owners>Calabonga</owners>
+    <projectUrl>http://www.calabonga.net/blog/post/51</projectUrl>
+    <iconUrl>http://www.calabonga.net/content/images/nuget_logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple Data classes for testing or tutorial applications. For example, class Person with some properties and class People (a set of Person). In this release added SampleData for Silvetlight app.</description>
+    <releaseNotes>Id property was added for Person entity.</releaseNotes>
+    <copyright />
+    <language>en-US</language>
+    <tags>data classes sample simple testing silverlight calabonga</tags>
+    <references>
+      <reference file="SampleData.dll" />
+      <reference file="SampleDataSilverlight.dll" />
+    </references>
+  </metadata>
+</package>

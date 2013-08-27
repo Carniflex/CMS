@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper">
+
+        <header id="header">
+            <div id="loginsection">
+                @Html.Partial("_LoginPartial")
+            </div>
+            <h1 class="headH1">My Personal Blog</h1>
+            <div class="meta">An <span>Blog </span>by <span>Michael Maciejewski</span></div>
+        </header>
+        <!-- #header-->
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            <menu id="mymenu">
+                <ul id="menu-css">
+                    <li>@Html.ActionLink("Main", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacts", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Blogs", "Index", "ForPost")</li>
+                    @if (User.IsInRole("writer") || User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("My blog", "MyRecord", "ForPost")</li>
+                        <li>@Html.ActionLink("New Post", "Create", "ForPost")</li>
+                    }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Admin panel", "Index", "MyAdmin")</li>}
+                </ul>
+            </menu>
+        }
+        <section id="middle">
+
+            <div id="container">
+                <div id="content">
+                    @RenderBody()
+                </div>
+                <!-- #content-->
+            </div>
+            <!-- #container-->
+            @if (User.Identity.IsAuthenticated)
+            {
+                <aside id="sideRight">
+                    <div id="cssmenu">
+                        <ul id="navigation">
+                            <li>@Html.ActionLink("Main", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contacts", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Blogs", "Index", "ForPost")</li>
+                            @if (User.IsInRole("writer") || User.IsInRole("admin"))
+                            {
+                                <li>@Html.ActionLink("My blog", "MyRecord", "ForPost")</li>
+                                <li>@Html.ActionLink("New Post", "Create", "ForPost")</li>
+                            }
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li>@Html.ActionLink("Admin panel", "Index", "MyAdmin")</li>}
+                        </ul>
+                    </div>
+                </aside>
+                <!-- #sideRight -->
+            }
+        </section>
+        <!-- #middle-->
+
+    </div>
+    <!-- #wrapper -->
+
+    <footer id="footer">
+    </footer>
+    <!-- #footer -->
+
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/ajaxlogin")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

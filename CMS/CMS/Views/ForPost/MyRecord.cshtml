@@ -1,0 +1,43 @@
+﻿@model PagedList.IPagedList<CMS.Models.Post>
+@using PagedList.Mvc
+
+@{
+   
+}
+
+<table class="posttable">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>Author:@Html.DisplayFor(modelItem => item.Author)
+            </td>
+        </tr>
+        <tr>
+            <td>Theme:@Html.DisplayFor(modelItem => item.Theme)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Date)
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostText)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @if(User.IsInRole("admin")){
+                @Html.ActionLink("Edit", "Edit", null, new { id = item.PostID }, new {@class="button"})
+                @Html.ActionLink("Delete", "Delete",null ,new { id = item.PostID }, new {@class="button"})
+                }
+            </td>
+        </tr>
+    }
+</table>
+ <div style="text-align: center;">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), 
+            new PagedListRenderOptions { LinkToFirstPageFormat = "<<", 
+                LinkToPreviousPageFormat = "next",
+                LinkToNextPageFormat = "back",
+                LinkToLastPageFormat = ">>" })
+   </div>
